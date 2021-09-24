@@ -1,4 +1,9 @@
 function generate_pdf() {
+  var inv_no = $(document).find("#invoice_no").val();
+
+  if (inv_no === "") {
+    inv_no = "invoice";
+  }
   document.querySelector(".add-btn").classList.add("hide");
   var element = document.getElementById("target");
 
@@ -6,7 +11,7 @@ function generate_pdf() {
 
   var opt = {
     margin: 0.1,
-    filename: "myfile.pdf",
+    filename: `${inv_no}.pdf`,
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2 },
     jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
