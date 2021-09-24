@@ -14,7 +14,7 @@ function generate_pdf() {
 
     filename: `${inv_no}.pdf`,
 
-    filename: "invoice.pdf",
+    
 
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2 },
