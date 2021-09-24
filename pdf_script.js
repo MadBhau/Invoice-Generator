@@ -11,7 +11,11 @@ function generate_pdf() {
 
   var opt = {
     margin: 0.1,
+<<<<<<< HEAD
     filename: `${inv_no}.pdf`,
+=======
+    filename: "invoice.pdf",
+>>>>>>> 63e2cba3a21b00477619a8ecfb45511143710614
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2 },
     jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
