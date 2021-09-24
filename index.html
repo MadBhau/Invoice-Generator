@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" type="text/css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+
+    <title>Invoice Generator</title>
+  </head>
+  <body>
+    <section class="section-invoice">
+      <div class="heading">
+        <div class="text-inv"><h1>Invoice Generator</h1></div>
+        <div>
+          <a href="#" id="pdf-gen" class="gen-pdf btn btn--full">PDF</a>
+          <!-- <button id="pdf-gen">pdf</button> -->
+        </div>
+      </div>
+      <div class="invoice" id="target">
+        <!-- Section 1 with 2X2 Setup -->
+        <div class="f-grid">
+          <div class="company-details">
+            <ul class="details-list">
+              <li>
+                <input
+                  type="text"
+                  id="company_name"
+                  placeholder="Your Company"
+                />
+              </li>
+              <li>
+                <input type="text" id="your_name" placeholder="Your Name" />
+              </li>
+              <li>
+                <input
+                  type="text"
+                  id="company_gstin"
+                  placeholder="Company's GSTIN"
+                />
+                <label id="label-1" style="display: none"
+                  >Enter the correct GSTIN</label
+                >
+              </li>
+              <li>
+                <input
+                  type="text"
+                  id="company_address"
+                  placeholder="Company's Address"
+                />
+              </li>
+              <li>
+                <input type="text" id="company_city" placeholder="City" />
+              </li>
+              <li>
+                <input type="text" id="company_state" placeholder="State" />
+              </li>
+            </ul>
+          </div>
+          <div class="invoice-name">
+            <input
+              type="text"
+              id="invoice_name"
+              value="INVOICE"
+              style="max-width: 20rem"
+            />
+          </div>
+          <div class="client-details">
+            <ul class="details-list">
+              <li>
+                <input type="text" value="Bill To:" />
+              </li>
+              <li>
+                <input type="text" placeholder="Your Client's Company" />
+              </li>
+              <li>
+                <input
+                  type="text"
+                  placeholder="Client's GSTIN"
+                  id="client_gstin"
+                />
+                <label id="label-2" style="display: none"
+                  >Enter the correct GSTIN</label
+                >
+              </li>
+              <li><input type="text" placeholder="Client's Address" /></li>
+              <li><input type="text" placeholder="City" /></li>
+              <li><input type="text" placeholder="State" /></li>
+            </ul>
+          </div>
+          <div class="invoice-dates">
+            <input type="text" value="Invoice No." />
+            <input type="text" id="invoice_no" placeholder="INV-001" />
+            <input type="text" value="Invoice Date" />
+            <input type="date" id="invoice_date" placeholder="12-07-2021" />
+            <input type="text" value="Due Date" />
+            <input type="date" id="Due_date" placeholder="12-07-2021" />
+          </div>
+        </div>
+
+        <!-- Section Table with items  -->
+        <div class="item-table">
+          <table class="item-table-js">
+            <tr>
+              <td>
+                <input type="text" value="Item Description" class="" />
+              </td>
+              <td>
+                <input type="text" value="Quantity" class="text-right" />
+              </td>
+              <td>
+                <input type="text" value="Rate" class="text-right" />
+              </td>
+              <td>
+                <input type="text" value="Tax Rate%" class="text-right" />
+              </td>
+              <td>
+                <input type="text" value="Amount" class="text-right" />
+              </td>
+            </tr>
+            <tr class="item">
+              <td>
+                <div class="two-cells">
+                  <div>
+                    <textarea name="" id="" cols="35" rows="3">
+Printing Visiting Cards</textarea
+                    >
+                  </div>
+                  <div>
+                    <input type="text" placeholder="HSN/SAC" />
+                  </div>
+                </div>
+              </td>
+
+              <td>
+                <input type="text" class="cal quantity text-right" value="1" />
+              </td>
+              <td>
+                <input type="text" class="cal rate text-right" value="100" />
+              </td>
+              <td>
+                <input type="text" class="cal tax text-right" value="5" />
+              </td>
+              <td>
+                <input
+                  type="text"
+                  class="r-tot text-right"
+                  value="100"
+                  readonly
+                />
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- section total  -->
+        <div class="section-total">
+          <div>
+            <a class="add-btn" href="javascript:void(0)">Add new row..</a>
+          </div>
+          <div class="total-table">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <input
+                      type="text"
+                      value="Sub Total(₹)"
+                      class="text-right"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value="100"
+                      id="sub_total"
+                      class="text-right"
+                      readonly
+                    />
+                  </td>
+                </tr>
+                <tr class="csgst">
+                  <td>
+                    <input type="text" value="CGST(₹)" class="text-right" />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value="2.5"
+                      id="cgst"
+                      class="text-right"
+                      readonly
+                    />
+                  </td>
+                </tr>
+                <tr class="csgst">
+                  <td>
+                    <input type="text" value="SGST(₹)" class="text-right" />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value="2.5"
+                      id="sgst"
+                      class="text-right"
+                      readonly
+                    />
+                  </td>
+                </tr>
+                <tr id="igst_id" class="hide">
+                  <td>
+                    <input type="text" value="IGST(₹)" class="text-right" />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value="5"
+                      id="igst"
+                      class="text-right"
+                      readonly
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="text" value="Total(₹)" class="text-right" />
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      value="105"
+                      id="total"
+                      class="text-right"
+                      readonly
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Section notes -->
+        <div class="section-notes">
+          <div class="notes">
+            <ul>
+              <li><input type="text" value="Notes" /></li>
+              <li><textarea name="" id="" cols="35" rows="5"></textarea></li>
+            </ul>
+          </div>
+          <div class="tnc">
+            <ul>
+              <li><input type="text" value="Terms and Conditions" /></li>
+              <li><textarea name="" id="" cols="35" rows="5"></textarea></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="./index.js"></script>
+    <script src="./pdf_script.js"></script>
+  </body>
+</html>
