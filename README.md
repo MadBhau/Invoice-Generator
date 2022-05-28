@@ -1,7 +1,7 @@
 
 # Invoice Generator
 
-An Invoice Generator Web-App that Generates PDF Invoice. (For Indian Users Only)
+An [Invoice Generator](https://madbhau.github.io/Invoice-Generator/#) Web-App that Generates PDF Invoice. (For Indian Users Only)
 
 
 
